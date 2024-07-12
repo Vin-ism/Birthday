@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Text with Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #ffffff;
+            opacity: 0;
+            animation: fadeIn 3s forwards, colorChange 6s infinite;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes colorChange {
+            0%, 100% {
+                color: #ff5733;
+            }
+            25% {
+                color: #33ff57;
+            }
+            50% {
+                color: #3357ff;
+            }
+            75% {
+                color: #ff33d4;
+            }
+        }
+
+        .button-container {
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .button-container.show {
+            opacity: 1;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #6200ea;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .button-container button:hover {
+            background-color: #3700b3;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ff69b4;
+            opacity: 0;
+            animation: blink 2s infinite;
+            box-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4, 0 0 15px #ff69b4, 0 0 20px #ff69b4;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Additional stars with random positions and animation delays */
+        .star:nth-child(2) { top: 20%; left: 30%; animation-delay: 0.5s; }
+        .star:nth-child(3) { top: 50%; left: 60%; animation-delay: 1s; }
+        .star:nth-child(4) { top: 70%; left: 20%; animation-delay: 1.5s; }
+        .star:nth-child(5) { top: 40%; left: 80%; animation-delay: 2s; }
+        .star:nth-child(6) { top: 10%; left: 50%; animation-delay: 2.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message">You've been getting flowers physically, how about smtg more virtual?</div>
+        <div class="button-container" id="buttonContainer">
+            <button onclick="window.location.href='flower.html'">Click me</button>
+        </div>
+    </div>
+    <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
+    <script>
+        // Show the button after the message animation is complete
+        setTimeout(() => {
+            document.getElementById('buttonContainer').classList.add('show');
+        }, 3000); // The duration should match the message animation duration
+    </script>
+</body>
+</html>
